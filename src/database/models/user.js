@@ -6,7 +6,8 @@ const User = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     saldo: DataTypes.FLOAT,
-  }, { timestamps: false
+  }, {
+    timestamps: false
   });
 
   User.associate = (models) => {

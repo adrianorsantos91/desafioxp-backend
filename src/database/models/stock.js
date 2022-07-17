@@ -7,7 +7,8 @@ const Stock = (sequelize, DataTypes) => {
     },
     qtdeAtivo: DataTypes.STRING,
     valor: DataTypes.STRING
-  }, { timestamps: false
+  }, {
+    timestamps: false
   });
 
   return Stock;

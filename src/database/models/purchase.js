@@ -13,9 +13,9 @@ const Stock = (sequelize, DataTypes) => {
       type: DataTypes.INTERGER,
       foreignkey: true
     },
-    qtdeAtivo: DataTypes.STRING,
-    valor: DataTypes.STRING
-  }, { timestamps: false
+    qtdeAtivo: DataTypes.STRING
+  }, {
+    timestamps: false
   });
 
   Stock.associate = (models) => {
