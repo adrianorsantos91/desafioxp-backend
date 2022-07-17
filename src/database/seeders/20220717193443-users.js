@@ -6,14 +6,14 @@ module.exports = {
       displayName: 'Adriano Santos',
       email: 'adriano@gmail.com',
       password: '123456',
-      saldo: '500',
+      amount: 500.00,
     },
     {
       id: 2,
       displayName: 'Rodrigo Souza',
       email: 'rodrigo@gmail.com',
       password: '654321',
-      saldo: '200',
+      amount: 200.00,
     }
   ])
   },

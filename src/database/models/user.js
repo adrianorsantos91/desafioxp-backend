@@ -5,7 +5,10 @@ const User = (sequelize, DataTypes) => {
       primarykey: true,
       autoIncrement: true
     },
-    saldo: DataTypes.FLOAT,
+    displayName: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
+    amount: DataTypes.DECIMAL,
   }, {
     timestamps: false
   });
