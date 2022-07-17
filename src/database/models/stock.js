@@ -6,7 +6,7 @@ const Stock = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     qtdeAtivo: DataTypes.STRING,
-    valor: DataTypes.STRING
+    price: DataTypes.STRING
   }, {
     timestamps: false
   });
