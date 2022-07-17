@@ -8,20 +8,21 @@
     "commit": "cz",
     "start": "node .",
     "debug": "nodemon .",
-    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json"
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js, .jsx"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adrianorsantos91/desafioxp-backend.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Adriano Santos",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/adrianorsantos91/desafioxp-backend/issues"
   },
   "homepage": "https://github.com/adrianorsantos91/desafioxp-backend#readme",
   "dependencies": {
+    "eslint-config-trybe-backend": "^1.0.4",
     "express": "^4.18.1",
     "mysql2": "^2.3.3",
     "sequelize": "^6.21.3",
@@ -30,7 +31,9 @@
   "devDependencies": {
     "cz-conventional-changelog": "^3.3.0",
     "dotenv": "^16.0.1",
+    "eslint": "^8.20.0",
     "eslint-plugin-dependencies": "^2.4.0",
+    "eslint-plugin-sonarjs": "^0.13.0",
     "nodemon": "^2.0.19"
   },
   "config": {
