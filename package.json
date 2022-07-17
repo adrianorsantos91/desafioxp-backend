@@ -1,0 +1,41 @@
+{
+  "name": "desafioxp-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "cz",
+    "start": "node .",
+    "debug": "nodemon .",
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrianorsantos91/desafioxp-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adrianorsantos91/desafioxp-backend/issues"
+  },
+  "homepage": "https://github.com/adrianorsantos91/desafioxp-backend#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.3",
+    "sequelize-cli": "^6.4.1"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
+    "dotenv": "^16.0.1",
+    "eslint-plugin-dependencies": "^2.4.0",
+    "nodemon": "^2.0.19"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
