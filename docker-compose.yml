@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+  node:
+
+    build: .
+
+    image: node:16
+
+    container_name: investment_manager
+
+    tty: true
+
+    stdin_open: true
+
+    command: bash
+
+    restart: always
+
+    working_dir: /app
+
+    volumes:
+      - ./:/app
+
+    depends_on:
+      - db
+
+    ports:
+      - 3000:3000
+
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_HOST: db
+      JWT_SECRET: suasenhaJWT
+
+  db:
+    container_name: investment_manager_db
+    image: mysql:8.0.21
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+
+networks:
+  default:
+    name: investment_manager_net
