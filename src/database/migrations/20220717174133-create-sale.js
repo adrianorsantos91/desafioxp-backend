@@ -8,8 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      qtdeAtivo: {
-        type: Sequelize.STRING
+      userId: {
+        type: DataTypes.INTEGER,
+        foreignKey: true
+      },
+      assetId: {
+        type: DataTypes.INTEGER,
+        foreignKey: true
+      },
+      quantityAsset: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

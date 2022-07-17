@@ -1,11 +1,11 @@
-const PurchaseStock = (sequelize, DataTypes) => {
-  const PurchaseStock = sequelize.define("PurchaseStock", {
+const PurchaseAsset = (sequelize, DataTypes) => {
+  const PurchaseAsset = sequelize.define("PurchaseAsset", {
     purchaseId: {
       type: DataTypes.INTEGER,
       primarykey: true,
       foreignkey: true
     },
-    stockId:{
+    assetId:{
       type: DataTypes.INTERGER,
       primarykey: true,
       foreignkey: true
@@ -14,26 +14,26 @@ const PurchaseStock = (sequelize, DataTypes) => {
     timestamps: false
   });
 
-  PurchaseStock.associate =(models) => {
-    models.Stock.belongsToMany(models.Purchase,
+  PurchaseAsset.associate =(models) => {
+    models.Asset.belongsToMany(models.Purchase,
       {
         through: PurchaseStock,
-        foreignkey: 'stockId',
+        foreignkey: 'assetId',
         otherKey: 'purchaseId',
         as: 'purchases',
       });
 
-      models.Purchase.belongsToMany(models.Stock,
+      models.Purchase.belongsToMany(models.Asset,
         {
           through: PurchaseStock,
           foreignkey: 'purchaseId',
-          otherKey: 'stockId',
-          as: 'stocks',
+          otherKey: 'assetId',
+          as: 'assets',
         });
 
   };
 
-  return PurchaseStock;
+  return PurchaseAsset;
 }
 
-module.exports = PurchaseStock;
+module.exports = PurchaseAsset;

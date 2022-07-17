@@ -1,5 +1,5 @@
-const Stock = (sequelize, DataTypes) => {
-  const Stock = sequelize.define("Stock", {
+const Sale = (sequelize, DataTypes) => {
+  const Sale = sequelize.define("Sale", {
     id: {
       type: DataTypes.INTEGER,
       primarykey: true,
@@ -9,22 +9,21 @@ const Stock = (sequelize, DataTypes) => {
       type: DataTypes.INTERGER,
       foreignkey: true
     },
-    stockId:{
+    assetId:{
       type: DataTypes.INTERGER,
       foreignkey: true
     },
-    qtdeAtivo: DataTypes.STRING,
-    valor: DataTypes.STRING
+    quantityAssets: DataTypes.INTEGER
   }, {
     timestamps: false
   });
 
-  Stock.associate = (models) => {
-    Stock.belongsTo(models.User,
+  Sale.associate = (models) => {
+    Sale.belongsTo(models.User,
       { foreignkey: 'userId', as: 'user' });
   };
 
-  return Stock;
+  return Sale;
 }
 
-module.exports = Stock;
+module.exports = Sale;

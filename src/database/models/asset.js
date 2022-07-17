@@ -5,8 +5,8 @@ const Stock = (sequelize, DataTypes) => {
       primarykey: true,
       autoIncrement: true
     },
-    qtdeAtivo: DataTypes.STRING,
-    price: DataTypes.STRING
+    quantityAssets: DataTypes.INTEGER,
+    price: DataTypes.DECIMAL
   }, {
     timestamps: false
   });

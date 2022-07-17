@@ -10,26 +10,14 @@ module.exports = {
       },
       userId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        references: {
-          model: 'Users',
-          key: 'id',
-        },
+        foreignKey: true
       },
-      stockId: {
+      assetId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        references: {
-          model: 'Stocks',
-          key: 'id',
-        },
+        foreignKey: true
       },
-      qtdeAtivo: {
-        type: Sequelize.STRING
+      quantityAsset: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

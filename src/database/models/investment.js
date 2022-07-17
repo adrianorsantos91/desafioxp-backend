@@ -9,11 +9,11 @@ const Investment = (sequelize, DataTypes) => {
       type: DataTypes.INTERGER,
       foreignkey: true
     },
-    assetsId: {
+    assetId: {
       type: DataTypes.INTERGER,
       foreignkey: true
     },
-    quantityAssets: DataTypes.INTEGER
+    quantityAsset: DataTypes.INTEGER
   }, {
     timestamps: false
   });

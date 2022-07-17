@@ -18,7 +18,7 @@ module.exports = {
           key: 'id',
         },
       },
-      assetsId: {
+      assetId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         onUpdate: 'CASCADE',
@@ -28,7 +28,7 @@ module.exports = {
           key: 'id',
         },
       },
-      quantityAssets: {
+      quantityAsset: {
         type: Sequelize.INTEGER
       },
       createdAt: {
