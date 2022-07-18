@@ -1,19 +1,19 @@
 module.exports = {
   up: async (queryInterface, _Sequelize) => {
-    await queryInterface.bulkinsert('Assets',
+    await queryInterface.bulkInsert('Assets',
     [{
       id: 1,
-      quantityAssets: 1000,
+      quantityAsset: 1000,
       price: 50.00
     },
     {
       id: 2,
-      quantityAssets: 2000,
+      quantityAsset: 2000,
       price: 20.00
     },
     {
       id: 3,
-      quantityAssets: 500,
+      quantityAsset: 500,
       price: 5.00
     },
   ])
