@@ -1,5 +1,5 @@
-const Stock = (sequelize, DataTypes) => {
-  const Stock = sequelize.define("Stock", {
+const Asset = (sequelize, DataTypes) => {
+  const Asset = sequelize.define("Asset", {
     id: {
       type: DataTypes.INTEGER,
       primarykey: true,
@@ -11,7 +11,7 @@ const Stock = (sequelize, DataTypes) => {
     timestamps: false
   });
 
-  return Stock;
+  return Asset;
 }
 
-module.exports = Stock;
+module.exports = Asset;
