@@ -17,7 +17,7 @@ const PurchaseAsset = (sequelize, DataTypes) => {
   PurchaseAsset.associate =(models) => {
     models.Asset.belongsToMany(models.Purchase,
       {
-        through: PurchaseStock,
+        through: PurchaseAsset,
         foreignkey: 'assetId',
         otherKey: 'purchaseId',
         as: 'purchases',
@@ -25,7 +25,7 @@ const PurchaseAsset = (sequelize, DataTypes) => {
 
       models.Purchase.belongsToMany(models.Asset,
         {
-          through: PurchaseStock,
+          through: PurchaseAsset,
           foreignkey: 'purchaseId',
           otherKey: 'assetId',
           as: 'assets',
