@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
@@ -19,12 +19,12 @@ module.exports = {
         },
       },
       assetId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
-          model: 'Stocks',
+          model: 'Assets',
           key: 'id',
         },
       },

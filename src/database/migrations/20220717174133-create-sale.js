@@ -9,11 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         foreignKey: true
       },
       assetId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         foreignKey: true
       },
       quantityAsset: {
@@ -21,11 +21,13 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now'),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now'),
       }
     });
   },

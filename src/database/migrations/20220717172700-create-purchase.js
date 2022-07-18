@@ -9,11 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         foreignKey: true
       },
       assetId: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         foreignKey: true
       },
       quantityAsset: {
