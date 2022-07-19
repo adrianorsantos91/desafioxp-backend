@@ -2,15 +2,15 @@ const Investment = (sequelize, DataTypes) => {
   const Investment = sequelize.define("Investment", {
     id: {
       type: DataTypes.INTEGER,
-      primarykey: true,
+      primaryKey: true,
       autoIncrement: true
     },
     userId: {
-      type: DataTypes.INTERGER,
+      type: DataTypes.INTEGER,
       foreignkey: true
     },
     assetId: {
-      type: DataTypes.INTERGER,
+      type: DataTypes.INTEGER,
       foreignkey: true
     },
     quantityAsset: DataTypes.INTEGER

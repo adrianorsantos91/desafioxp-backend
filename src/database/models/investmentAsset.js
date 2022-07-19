@@ -2,12 +2,10 @@ const InvestmentAsset = (sequelize, DataTypes) => {
   const InvestmentAsset = sequelize.define("InvestmentAsset", {
     investmentId: {
       type: DataTypes.INTEGER,
-      primarykey: true,
       foreignkey: true
     },
     assetId:{
-      type: DataTypes.INTERGER,
-      primarykey: true,
+      type: DataTypes.INTEGER,
       foreignkey: true
     }
   }, {

@@ -2,7 +2,7 @@ const User = (sequelize, DataTypes) => {
   const User = sequelize.define("User", {
     id: {
       type: DataTypes.INTEGER,
-      primarykey: true,
+      primaryKey: true,
       autoIncrement: true
     },
     displayName: DataTypes.STRING,
@@ -14,8 +14,8 @@ const User = (sequelize, DataTypes) => {
   });
 
   User.associate = (models) => {
-    User.hasMany(models.Purchase,
-      { foreignkey: 'userId', as: 'purchases'});
+    User.hasMany(models.Investment,
+      { foreignkey: 'userId', as: 'investments'});
   };
 
   return User;
