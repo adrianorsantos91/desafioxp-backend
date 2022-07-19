@@ -11,7 +11,7 @@ const Investment = (sequelize, DataTypes) => {
     },
     assetId: {
       type: DataTypes.INTEGER,
-      foreignkey: true
+      // foreignkey: true
     },
     quantityAsset: DataTypes.INTEGER
   }, {
