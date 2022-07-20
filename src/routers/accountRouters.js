@@ -5,6 +5,6 @@ const accountController = require('../controllers/accountController');
 const router = express.Router();
 
 router.post('/deposito', accountController.createdDeposit);
-// router.post('/saque', accountController);
+router.post('/saque', accountController.createdDraft);
 
 module.exports = router;

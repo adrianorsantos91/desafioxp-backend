@@ -5,6 +5,12 @@ const createdDeposit = async (req, res) => {
   return res.status(201).json(userAmount);
 };
 
+const createdDraft = async (req, res) => {
+  const userAmount = await accountService.createdDraft(req.body);
+  return res.status(201).json(userAmount);
+};
+
 module.exports = {
   createdDeposit,
+  createdDraft,
 };
