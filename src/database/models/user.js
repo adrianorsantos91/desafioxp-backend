@@ -13,10 +13,10 @@ const User = (sequelize, DataTypes) => {
     timestamps: false
   });
 
-  User.associate = (models) => {
-    User.hasMany(models.Investment,
-      { foreignkey: 'userId', as: 'investments'});
-  };
+  // User.associate = (models) => {
+  //   User.hasMany(models.Investment,
+  //     { foreignkey: 'userId', as: 'investments'});
+  // };
 
   return User;
 }
