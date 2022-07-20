@@ -9,12 +9,12 @@ module.exports = {
     {
       id: 2,
       quantityAsset: 2000,
-      price: 20.00
+      price: 20.05
     },
     {
       id: 3,
       quantityAsset: 500,
-      price: 5.00
+      price: 5.15
     },
   ])
   },

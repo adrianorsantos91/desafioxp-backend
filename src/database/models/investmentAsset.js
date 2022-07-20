@@ -4,12 +4,10 @@ const InvestmentAsset = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       foreignkey: true
     },
-    assetId:{
+    assetId: {
       type: DataTypes.INTEGER,
       foreignkey: true
-    }
-  }, {
-    timestamps: false
+    },
   });
 
   InvestmentAsset.associate = (models) => {
@@ -28,7 +26,6 @@ const InvestmentAsset = (sequelize, DataTypes) => {
           otherKey: 'assetId',
           as: 'assets',
         });
-
   };
 
   return InvestmentAsset;

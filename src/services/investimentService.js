@@ -15,20 +15,17 @@ const createdPurchase = async ({ codCliente, codAtivo, qtdeAtivo }) => {
 
   if (user.amount < qtdeAtivo * asset.price) return 'amount';
 
-  const investment = await Investment.create({
-    userId: codCliente, assetId: codAtivo, quantityAsset: qtdeAtivo });
-    console.log('investments: %s', investment.id);
-    console.log('userId: %s', investment.userId);
-    console.log('assetId: %s', investment.assetId);
-    console.log('quantityAsset: %s', investment.quantityAsset);
+  await Investment.create({
+    userId: codCliente, quantityAsset: qtdeAtivo, price: asset.price });
+    // Cria um novo registro de compra;
 
-  /* await InvestmentAsset.create({ assetId: codAtivo, investmentId: investment.id }); */
+  // await InvestmentAsset.create({ investmentId: investment.id, assetId: codAtivo });
 
   await Asset.update({ quantityAsset: asset.quantityAsset - qtdeAtivo },
-    { where: { id: codAtivo } });
+    { where: { id: codAtivo } }); // Atualiza a qtde disponivel na corretora;
 
   await User.update({ amount: user.amount - qtdeAtivo * asset.price },
-    { where: { id: codCliente } });
+    { where: { id: codCliente } }); // Atualiza o saldo do cliente;
 
   return asset;
 };
