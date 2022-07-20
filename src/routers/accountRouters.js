@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.post('/deposito', accountController.createdDeposit);
 router.post('/saque', accountController.createdDraft);
+router.get('/:id', accountController.getClientById);
 
 module.exports = router;

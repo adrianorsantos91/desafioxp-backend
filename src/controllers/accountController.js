@@ -10,7 +10,14 @@ const createdDraft = async (req, res) => {
   return res.status(201).json(userAmount);
 };
 
+const getClientById = async (req, res) => {
+  const { id } = req.params;
+  const client = await accountService.getClientById(id);
+  return res.status(200).json(client);
+};
+
 module.exports = {
   createdDeposit,
   createdDraft,
+  getClientById,
 };

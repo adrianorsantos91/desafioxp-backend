@@ -29,7 +29,16 @@ const createdDraft = async (client) => {
   return { id: client.codCliente, amount: newAmount };
 };
 
+const getClientById = async (id) => {
+  const client = await User.findOne({
+    attributes: { exclude: ['displayName', 'email', 'password'] },
+    where: { id } });
+
+  return client;
+};
+
 module.exports = {
   createdDeposit,
   createdDraft,
+  getClientById,
 };
