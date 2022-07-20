@@ -18,18 +18,11 @@ module.exports = {
           key: 'id',
         },
       },
-      assetId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        references: {
-          model: 'Assets',
-          key: 'id',
-        },
-      },
       quantityAsset: {
         type: Sequelize.INTEGER
+      },
+      price: {
+        type: Sequelize.DECIMAL,
       },
       published: {
         allowNull: false,

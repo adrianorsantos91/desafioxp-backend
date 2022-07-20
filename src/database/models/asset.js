@@ -6,7 +6,7 @@ const Asset = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     quantityAsset: DataTypes.INTEGER,
-    price: DataTypes.DECIMAL
+    price: DataTypes.DECIMAL(10,2),
   }, {
     timestamps: false
   });
