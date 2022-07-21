@@ -7,7 +7,7 @@ const createdDeposit = async (client) => {
     throw errorMessage;
   }
 
-  const newAmount = parseFloat(cliente.amount) + client.valor;
+  const newAmount = parseFloat(cliente.amount) + parseFloat(client.valor);
 
   await User.update({ amount: newAmount },
     { where: { id: client.codCliente } });
@@ -21,7 +21,7 @@ const createdDraft = async (client) => {
     const errorMessage = { status: 400, message: '"client" not found' };
     throw errorMessage;
   }
-  const newAmount = parseFloat(cliente.amount) - client.valor;
+  const newAmount = parseFloat(cliente.amount) - parseFloat(client.valor);
 
   await User.update({ amount: newAmount },
     { where: { id: client.codCliente } });
@@ -34,7 +34,7 @@ const getClientById = async (id) => {
     attributes: { exclude: ['displayName', 'email', 'password'] },
     where: { id } });
 
-  return client;
+  return { id: client.id, amount: parseFloat(client.amount) };
 };
 
 module.exports = {
