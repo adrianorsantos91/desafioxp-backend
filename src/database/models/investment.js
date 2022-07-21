@@ -9,8 +9,12 @@ const Investment = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       foreignkey: true
     },
-    quantityAsset: DataTypes.INTEGER,
-    price: DataTypes.DECIMAL,
+    quantityAsset: {
+      type: DataTypes.INTEGER,
+    },
+    price: {
+      type: DataTypes.DECIMAL,
+    },
     published: {
       type: DataTypes.STRING
     },

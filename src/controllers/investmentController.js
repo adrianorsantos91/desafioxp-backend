@@ -20,6 +20,15 @@ const createdPurchase = async (req, res) => {
   return res.status(201).json(purchase);
 };
 
+const createdSale = async (req, res) => {
+  const sale = await investmentService.createdSale(req.body);
+  if (sale === 'quantity') {
+    return res.status(400).json({ message: '"quantityAsset" unavailable in wallet' });
+  }
+  return res.status(201).json(sale);
+};
+
 module.exports = {
   createdPurchase,
+  createdSale,
 };

@@ -8,7 +8,9 @@ const User = (sequelize, DataTypes) => {
     displayName: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    amount: DataTypes.DECIMAL,
+    amount: {
+      type: DataTypes.DECIMAL,
+    },
   }, {
     timestamps: false
   });

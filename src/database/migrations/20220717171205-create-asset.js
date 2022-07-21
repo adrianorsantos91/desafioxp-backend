@@ -9,10 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       quantityAsset: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       price: {
-        type: Sequelize.DECIMAL(10,2)
+        allowNull: false,
+        type: Sequelize.DECIMAL
       },
       createdAt: {
         allowNull: false,
