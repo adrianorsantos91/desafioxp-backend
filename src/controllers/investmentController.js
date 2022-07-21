@@ -2,7 +2,6 @@ const investmentService = require('../services/investimentService');
 
 const createdPurchase = async (req, res) => {
   // const email = res.locals.payload;
-  console.log('bodyPost: %s', req.body);
   const purchase = await investmentService.createdPurchase(req.body);
 
   if (!purchase) {
