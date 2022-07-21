@@ -1,5 +1,6 @@
 const { Op } = require('sequelize');
 const { User, Asset, Investment, InvestmentAsset } = require('../database/models');
+const { getClientById } = require('./clientService');
 /* Validação: Quantidade de ativo a ser comprada não pode ser maior que a quantidade disponível na corretora */
 
 const createdPurchase = async ({ userId, assetId, quantityAsset }) => {
@@ -12,21 +13,25 @@ const createdPurchase = async ({ userId, assetId, quantityAsset }) => {
   } });
 
   const [result] = investWithAsset.filter((inv) =>
-  inv.userId === userId && inv.assets.id === assetId);
-  console.log('result: %s', result);
+  inv.userId === userId && inv.assets[0].id === assetId);
 
   if (!result) {
-    const newInvestment = await Investment.create({ userId, quantityAsset, price: asset.price });
+    const newInvestment = await Investment.create({ userId,
+      quantityAsset, price: asset.price });
     await InvestmentAsset.create({ investmentId: newInvestment.id, assetId });
   }
 
   if (result) {
+    const averagePrice = (result.quantityAsset * result.price
+      + asset.price * quantityAsset) / (result.quantityAsset + quantityAsset)
     await Investment.update({
-      userId, quantityAsset, price: asset.price }, {
-      where: { [Op.and]: [{ id: newInvestment.id }, { userId }]}});
+      userId,
+      quantityAsset: result.quantityAsset + quantityAsset,
+      price: averagePrice }, {
+      where: { [Op.and]: [{ id: result.id }, { userId }]}});
   }
 
-  return result;
+  return investWithAsset;
 };
 
 const createdSale = async ({ userId, assetId, quantityAsset }) => {
