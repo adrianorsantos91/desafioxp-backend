@@ -5,6 +5,6 @@ const investmentController = require('../controllers/investmentController');
 const router = express.Router();
 
 router.post('/comprar', investmentController.createdPurchase);
-// router.post('/vender', investmentController);
+router.post('/vender', investmentController.createdSale);
 
 module.exports = router;
