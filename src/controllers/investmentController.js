@@ -20,6 +20,12 @@ const createdPurchase = async (req, res) => {
   return res.status(201).json(purchase);
 };
 
+const createdSale = async (req, res) => {
+  const sale = await investmentService.createdSale(req.body);
+  return res.status(201).json(sale);
+};
+
 module.exports = {
   createdPurchase,
+  createdSale,
 };

@@ -1,35 +1,76 @@
-const { User, Asset, Investment } = require('../database/models');
-
+const { Op } = require('sequelize');
+const { User, Asset, Investment, InvestmentAsset } = require('../database/models');
 /* Validação: Quantidade de ativo a ser comprada não pode ser maior que a quantidade disponível na corretora */
 
-const createdPurchase = async ({ codCliente, codAtivo, qtdeAtivo }) => {
-  const user = await User.findOne({ where: { id: codCliente } });
+const createdPurchase = async ({ userId, assetId, quantityAsset }) => {
+  const asset = await Asset.findOne({ where: { id: assetId } });
+  const investWithAsset = await Investment.findAll({ where: { userId },
+    include: { model: Asset,
+      as: 'assets',
+    attributes: { exclude: ['quantityAsset'] },
+    through: { attributes: [] },
+  } });
 
-  const { count } = await Asset.findAndCountAll({ where: { id: codAtivo } });
+  const [result] = investWithAsset.filter((inv) =>
+  inv.userId === userId && inv.assets.id === assetId);
+  console.log('result: %s', result);
 
-  if (count === 0) return false;
+  if (!result) {
+    const newInvestment = await Investment.create({ userId, quantityAsset, price: asset.price });
+    await InvestmentAsset.create({ investmentId: newInvestment.id, assetId });
+  }
 
-  const asset = await Asset.findOne({ where: { id: codAtivo } });
+  if (result) {
+    await Investment.update({
+      userId, quantityAsset, price: asset.price }, {
+      where: { [Op.and]: [{ id: newInvestment.id }, { userId }]}});
+  }
 
-  if (asset.quantityAsset < qtdeAtivo) return 'quantity';
+  return result;
+};
 
-  if (user.amount < qtdeAtivo * asset.price) return 'amount';
+const createdSale = async ({ userId, assetId, quantityAsset }) => {
 
-  await Investment.create({
-    userId: codCliente, quantityAsset: qtdeAtivo, price: asset.price });
-    // Cria um novo registro de compra;
-
-  // await InvestmentAsset.create({ investmentId: investment.id, assetId: codAtivo });
-
-  await Asset.update({ quantityAsset: asset.quantityAsset - qtdeAtivo },
-    { where: { id: codAtivo } }); // Atualiza a qtde disponivel na corretora;
-
-  await User.update({ amount: user.amount - qtdeAtivo * asset.price },
-    { where: { id: codCliente } }); // Atualiza o saldo do cliente;
-
-  return asset;
 };
 
 module.exports = {
   createdPurchase,
+  createdSale,
 };
+
+// // const user = await User.findOne({ where: { id: userId } });
+// const { count } = await Asset.findAndCountAll({ where: { id: assetId } });
+// if (count === 0) return false;
+// const asset = await Asset.findOne({ where: { id: assetId } });
+// // if (asset.quantityAsset < quantityAsset) return 'quantity';
+// // if (user.amount < quantityAsset * asset.price) return 'amount';
+// const investimentos = await Investment.findAll({ where: { userId } });
+// const [result] = await investimentos.map(async ({ id }) => {
+//   // console.log('id: %s', id);
+//   const test = await InvestmentAsset.findOne({
+//     where: { [Op.and]: [{ investmentId: id }, { assetId }] } });
+//     console.log('Test: %s', test);
+//     return test;
+// });
+
+// if (!result.test) {
+//   console.log('result: %s', result.test);
+//     const investmentId = await Investment.create({
+//       userId, quantityAsset, price: asset.price });
+//       // Cria um novo registro de compra;
+
+//     await InvestmentAsset.create({ investmentId: investmentId.id, assetId });
+// }
+// // if (result.length === 0) {
+
+// await Asset.update({ quantityAsset: asset.quantityAsset - quantityAsset },
+//   { where: { id: assetId } }); // Atualiza a qtde disponivel na corretora;
+
+// // await User.update({ amount: user.amount - quantityAsset * asset.price },
+// //   { where: { id: userId } }); // Atualiza o saldo do cliente;
+
+// return {
+//   id: asset.id,
+//   quantityAsset: parseInt(asset.quantityAsset, 10),
+//   price: parseFloat(asset.price),
+// };
