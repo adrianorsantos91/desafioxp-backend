@@ -19,9 +19,11 @@ module.exports = {
         },
       },
       quantityAsset: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       price: {
+        allowNull: false,
         type: Sequelize.DECIMAL,
       },
       published: {
