@@ -1,6 +1,6 @@
 const { Op } = require('sequelize');
 const { User, Asset, Investment, InvestmentAsset } = require('../database/models');
-/* Validação: Quantidade de ativo a ser comprada não pode ser maior que a quantidade disponível na corretora */
+const { notFoundAsset, errorQuantity, errorAmount } = require('../utils/errorMessage');
 
 const updateTablesByPurchase = async (user, result, asset, { userId, assetId, quantityAsset }) => {
   const averagePrice = (result.quantityAsset * result.price
@@ -19,6 +19,7 @@ const updateTablesByPurchase = async (user, result, asset, { userId, assetId, qu
   quantityAsset: parseFloat(asset.quantityAsset) - parseFloat(quantityAsset) },
   { where: { id: assetId } });
 };
+
 const checkUserWithAsset = async (investWithAsset, asset, purchase) => {
   const { userId, assetId, quantityAsset } = purchase;
   const [result] = investWithAsset.filter((inv) =>
@@ -33,17 +34,6 @@ const checkUserWithAsset = async (investWithAsset, asset, purchase) => {
     await updateTablesByPurchase(user, result, asset, purchase);
   }
 };
-
-// const updateTablesInSale = async (result, asset, { userId, quantityAsset }) => {
-//   const user = await User.findOne({ where: { id: userId } });
-//   await Investment.update({
-//     quantityAsset: result.quantityAsset - quantityAsset,
-//     }, {
-//     where: { [Op.and]: [{ id: result.id }, { userId }] } });
-//     const amount = parseFloat(user.amount) + parseFloat(quantityAsset * asset.price);
-//    await User.update({ amount }, { where: { id: userId } });
-//    await Asset.update({ quantityAsset: asset.quantityAsset + quantityAsset });
-// };
 
 const checkAssetBySale = async (investWithAsset, asset, sale) => {
   const { userId, assetId, quantityAsset } = sale;
@@ -75,6 +65,7 @@ const getInvestimentWithAssetById = async (userId) => {
   } });
   return investWithAsset;
 };
+
 const createdPurchase = async (purchase) => {
   const { userId, assetId, quantityAsset } = purchase;
 
@@ -82,13 +73,13 @@ const createdPurchase = async (purchase) => {
 
   const { count } = await Asset.findAndCountAll({ where: { id: assetId } });
 
-  if (count === 0) return false;
+  if (count === 0) throw notFoundAsset;
 
   const asset = await Asset.findOne({ where: { id: assetId } });
 
-  if (asset.quantityAsset < quantityAsset) return 'quantity';
+  if (asset.quantityAsset < quantityAsset) throw errorQuantity;
 
-  if (user.amount < quantityAsset * asset.price) return 'amount';
+  if (user.amount < quantityAsset * asset.price) throw errorAmount;
 
   const investWithAsset = await getInvestimentWithAssetById(userId);
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const investmentController = require('../controllers/investmentController');
-const { validateContainsFields } = require('../middleware/validateInvestment');
+const { validateContainsFields } = require('../middlewares/validateInvestment');
 // const authenticationMiddleware = require('../middlewares/auth.middleware');
 
 const router = express.Router();
