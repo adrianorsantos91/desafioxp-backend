@@ -1,9 +1,11 @@
 const express = require('express');
 const assetController = require('../controllers/assetController');
-// const authenticationMiddleware = require('../middlewares/auth.middleware');
+const clientController = require('../controllers/clientController');
+const authenticateToken = require('../middlewares/auth.middeware');
 
 const router = express.Router();
 
-router.get('/ativos/:id', assetController.getAssetById);
+router.get('/:id', authenticateToken, assetController.getAssetById);
+router.get('/clientes/:id', authenticateToken, clientController.getClientById);
 
 module.exports = router;

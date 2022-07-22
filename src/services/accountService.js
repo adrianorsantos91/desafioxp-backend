@@ -1,32 +1,31 @@
 const { User } = require('../database/models');
+const { notFoundClient } = require('../utils/errorMessage');
 
 const createdDeposit = async (client) => {
-  const cliente = await User.findOne({ where: { id: client.codCliente } });
+  const cliente = await User.findOne({ where: { id: client.userId } });
   if (!cliente) {
-    const errorMessage = { status: 400, message: '"client" not found' };
-    throw errorMessage;
+    throw notFoundClient;
   }
 
-  const newAmount = parseFloat(cliente.amount) + parseFloat(client.valor);
+  const newAmount = parseFloat(cliente.amount) + parseFloat(client.amount);
 
   await User.update({ amount: newAmount },
-    { where: { id: client.codCliente } });
+    { where: { id: client.userId } });
 
-  return { id: client.codCliente, amount: newAmount };
+  return { id: client.userId, amount: newAmount };
 };
 
 const createdDraft = async (client) => {
-  const cliente = await User.findOne({ where: { id: client.codCliente } });
-  if (!cliente) {
-    const errorMessage = { status: 400, message: '"client" not found' };
-    throw errorMessage;
+  const user = await User.findOne({ where: { id: client.userId } });
+  if (!user) {
+    throw notFoundClient;
   }
-  const newAmount = parseFloat(cliente.amount) - parseFloat(client.valor);
+  const newAmount = parseFloat(user.amount) - parseFloat(client.amount);
 
   await User.update({ amount: newAmount },
-    { where: { id: client.codCliente } });
+    { where: { id: client.userId } });
 
-  return { id: client.codCliente, amount: newAmount };
+  return { id: client.userId, amount: newAmount };
 };
 
 const getClientById = async (id) => {
@@ -34,7 +33,11 @@ const getClientById = async (id) => {
     attributes: { exclude: ['displayName', 'email', 'password'] },
     where: { id } });
 
-  return { id: client.id, amount: parseFloat(client.amount) };
+  if (!client) {
+    throw notFoundClient;
+  }
+  const listClient = { id: client.id, amount: parseFloat(client.amount) };
+  return listClient;
 };
 
 module.exports = {

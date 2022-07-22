@@ -1,9 +1,9 @@
 const express = require('express');
-const clientController = require('../controllers/clientController');
+const loginController = require('../controllers/loginController');
 // const authenticationMiddleware = require('../middlewares/auth.middleware');
 
 const router = express.Router();
 
-router.get('/ativos/:id', clientController.getClientById);
+router.post('/', loginController.authentication);
 
 module.exports = router;

@@ -1,11 +1,14 @@
 const express = require('express');
 const accountController = require('../controllers/accountController');
-// const authenticationMiddleware = require('../middlewares/auth.middleware');
+const { validateContainsFields } = require('../middlewares/validateAccount');
+const authenticateToken = require('../middlewares/auth.middeware');
 
 const router = express.Router();
 
-router.post('/deposito', accountController.createdDeposit);
-router.post('/saque', accountController.createdDraft);
-router.get('/:id', accountController.getClientById);
+router.get('/:id', authenticateToken, accountController.getClientById);
+router.post('/deposito', authenticateToken,
+  validateContainsFields, accountController.createdDeposit);
+router.post('/saque', authenticateToken,
+  validateContainsFields, accountController.createdDraft);
 
 module.exports = router;
