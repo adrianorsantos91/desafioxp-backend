@@ -22,5 +22,3 @@ module.exports = {
     await queryInterface.bulkDelete('InvestmentAssets', null, {});
   },
 };
-
-

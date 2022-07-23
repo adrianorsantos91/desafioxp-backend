@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const { User, Asset, Investment, InvestmentAsset } = require('../database/models');
-const { notFoundAsset, errorQuantity, errorAmount } = require('../utils/errorMessage');
+const { notFoundAsset, errorQuantity, errorAmount, errorQuantityWallet,
+} = require('../utils/errorMessage');
 
 const updateTablesByPurchase = async (user, result, asset, { userId, assetId, quantityAsset }) => {
   const averagePrice = (result.quantityAsset * result.price
@@ -40,11 +41,11 @@ const checkAssetBySale = async (investWithAsset, asset, sale) => {
   const [result] = investWithAsset.filter((inv) =>
   inv.userId === userId && inv.assets[0].id === assetId);
 
-  if (result.quantityAsset < quantityAsset) return false;
+  if (result.quantityAsset < quantityAsset) throw errorQuantityWallet;
   // await updateTablesInSale(result, asset, sale);
   const user = await User.findOne({ where: { id: userId } });
   await Investment.update({
-    quantityAsset: result.quantityAsset - quantityAsset,
+    quantityAsset: parseFloat(result.quantityAsset) - parseFloat(quantityAsset),
     }, {
     where: { [Op.and]: [{ id: result.id }, { userId }] } });
     const amount = parseFloat(user.amount) + parseFloat(quantityAsset * asset.price);
@@ -88,12 +89,12 @@ const createdPurchase = async (purchase) => {
   return {
     id: asset.id,
     userId,
-    quantityAsset: parseInt(asset.quantityAsset, 10),
+    quantityAsset: parseInt(quantityAsset, 10),
     price: parseFloat(asset.price) };
 };
 
 const createdSale = async (sale) => {
-  const { userId, assetId } = sale;
+  const { userId, assetId, quantityAsset } = sale;
   const { count } = await Asset.findAndCountAll({ where: { id: assetId } });
   if (count === 0) return false;
   const asset = await Asset.findOne({ where: { id: assetId } });
@@ -105,14 +106,12 @@ const createdSale = async (sale) => {
     through: { attributes: [] },
   } });
 
-  const result = await checkAssetBySale(investWithAsset, asset, sale);
-
-  if (!result) return 'quantity';
+  await checkAssetBySale(investWithAsset, asset, sale);
 
     return {
       id: asset.id,
       userId,
-      quantityAsset: parseInt(asset.quantityAsset, 10),
+      quantityAsset: parseInt(quantityAsset, 10),
       price: parseFloat(asset.price),
     };
 };

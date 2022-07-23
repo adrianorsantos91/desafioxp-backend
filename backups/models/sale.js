@@ -1,21 +1,21 @@
 const Sale = (sequelize, DataTypes) => {
-  const Sale = sequelize.define("Sale", {
+  const Sale = sequelize.define('Sale', {
     id: {
       type: DataTypes.INTEGER,
       primarykey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     userId: {
       type: DataTypes.INTERGER,
-      foreignkey: true
+      foreignkey: true,
     },
-    assetId:{
+    assetId: {
       type: DataTypes.INTERGER,
-      foreignkey: true
+      foreignkey: true,
     },
-    quantityAssets: DataTypes.INTEGER
+    quantityAssets: DataTypes.INTEGER,
   }, {
-    timestamps: false
+    timestamps: false,
   });
 
   Sale.associate = (models) => {
@@ -24,6 +24,6 @@ const Sale = (sequelize, DataTypes) => {
   };
 
   return Sale;
-}
+};
 
 module.exports = Sale;

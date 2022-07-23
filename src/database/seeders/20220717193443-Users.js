@@ -14,8 +14,8 @@ module.exports = {
       email: 'rodrigo@gmail.com',
       password: '654321',
       amount: 200.00,
-    }
-  ])
+    },
+  ]);
   },
 
   down: async (queryInterface, _Sequelize) => {

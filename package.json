@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha test/unit/**/*.js --exit",
+    "coverage": "nyc --reporter-lcov --reporter-text-lconv npm test",
     "commit": "cz",
+    "test:mocha": "nyc --all --include services --include controllers mocha test/unit/**/*.js --exit",
     "prestart": "npx sequelize-cli db:create && npx sequelize-cli db:migrate",
     "drop": "npx sequelize-cli db:drop",
     "seed": "npx sequelize-cli db:seed:all",
-    "start": "node .",
+    "start": "node --ignore coverage index.js",
     "debug": "nodemon .",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js, .jsx"
   },
@@ -24,6 +26,9 @@
   },
   "homepage": "https://github.com/adrianorsantos91/desafioxp-backend#readme",
   "dependencies": {
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
     "eslint-config-trybe-backend": "^1.0.4",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
@@ -33,12 +38,17 @@
     "sequelize-cli": "^6.4.1"
   },
   "devDependencies": {
+    "chai": "^4.3.6",
     "cz-conventional-changelog": "^3.3.0",
     "dotenv": "^16.0.1",
-    "eslint": "^8.20.0",
     "eslint-plugin-dependencies": "^2.4.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-sonarjs": "^0.13.0",
-    "nodemon": "^2.0.19"
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.19",
+    "nyc": "^15.1.0",
+    "sinon": "^14.0.0",
+    "supertest": "^6.2.4"
   },
   "config": {
     "commitizen": {

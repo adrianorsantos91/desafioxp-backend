@@ -1,21 +1,21 @@
 const Purchase = (sequelize, DataTypes) => {
-  const Purchase = sequelize.define("Purchase", {
+  const Purchase = sequelize.define('Purchase', {
     id: {
       type: DataTypes.INTEGER,
       primarykey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     userId: {
       type: DataTypes.INTERGER,
-      foreignkey: true
+      foreignkey: true,
     },
-    assetId:{
+    assetId: {
       type: DataTypes.INTERGER,
-      foreignkey: true
+      foreignkey: true,
     },
-    quantityAssets: DataTypes.DECIMAL
+    quantityAssets: DataTypes.DECIMAL,
   }, {
-    timestamps: false
+    timestamps: false,
   });
 
   Purchase.associate = (models) => {
@@ -24,6 +24,6 @@ const Purchase = (sequelize, DataTypes) => {
   };
 
   return Purchase;
-}
+};
 
 module.exports = Purchase;

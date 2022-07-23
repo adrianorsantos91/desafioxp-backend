@@ -1,4 +1,9 @@
+node_modules
+test
+coverage
+.nyc*
+frontend/
 /tests
 **/migrations/
-**/seeders/
 **/models/
+**/seeders/
