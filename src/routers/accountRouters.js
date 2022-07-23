@@ -5,7 +5,7 @@ const authenticateToken = require('../middlewares/auth.middeware');
 
 const router = express.Router();
 
-router.get('/:id', authenticateToken, accountController.getClientById);
+router.get('/:id', accountController.getClientById);
 router.post('/deposito', authenticateToken,
   validateContainsFields, accountController.createdDeposit);
 router.post('/saque', authenticateToken,
