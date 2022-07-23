@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/';
 import instance from '../../shared/axios.config.js'
-// import axios from 'axios';
 const JWTToken  = "eyJhbGciOiJIUzI1NiJ9.YWRyaWFub0BnbWFpbC5jb20.kQNlR54aUIvCn7n2CrL7Q0q6sdLXRgJ-_sPSgLhikRU";
-const Assets = () => {
-  const [data, setData] = useState({});
+const AssetsByClient = () => {
+  const [data, setData] = useState([]);
   const [ isFetching, setIsFetching] = useState(false);
   const { id } = useParams()
-  console.log('Data: %s', data);
+
   useEffect(() => {
-    const result = instance.get(`/ativos/${id}`, {
+    const result = instance.get(`/ativos/clientes/${id}`, {
       headers: {
         Authorization: JWTToken,
       }
@@ -30,10 +29,21 @@ const Assets = () => {
   return (
   <>
     { isFetching && <p>Carregando...</p>}
-      <p>{ `Codigo do Ativo: ${ data.id }` }</p>
-      <p>{ `Quantidade disponivel: ${ data.quantityAsset }` }</p>
-      <p>{ `Valor: R$ ${ data.price }` }</p>
+    { data.map((inv) => (
+        <div key={ inv.assetId }>
+          <ul>
+            <li>
+              <p>{ `Codigo do Cliente: ${ inv.clientId }` }</p>
+              <p>{ `Codigo do Ativo: ${ inv.assetId }` }</p>
+              <p>{ `Quantidade: ${ inv.quantityAsset }` }</p>
+              <p>{ `Valor: R$ ${ inv.price }` }</p>
+            </li>
+          </ul>
+        </div>
+      )
+    )}
+
   </>)
 }
 
-export default Assets;
+export default AssetsByClient;
