@@ -8,7 +8,7 @@ const Assets = () => {
   const { id } = useParams()
   console.log('Data: %s', data);
   useEffect(() => {
-    const result = instance.get(`/ativos/${id}`, {
+    instance.get(`/ativos/${id}`, {
       headers: {
         Authorization: JWTToken,
       }
@@ -22,9 +22,7 @@ const Assets = () => {
       .finally(() => {
         setIsFetching(false);
       })
-
-    console.log(result);
-  }, {});
+  });
 
   return (
   <>

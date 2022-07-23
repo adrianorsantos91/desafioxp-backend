@@ -8,7 +8,7 @@ const Client = () => {
   const { id } = useParams()
 
   useEffect(() => {
-    const result = instance.get(`/conta/${id}`, {
+    instance.get(`/conta/${id}`, {
       headers: {
         Authorization: JWTToken,
       }
@@ -22,9 +22,7 @@ const Client = () => {
       .finally(() => {
         setIsFetching(false);
       })
-
-    console.log(result);
-  }, {});
+  });
 
   return (
   <>

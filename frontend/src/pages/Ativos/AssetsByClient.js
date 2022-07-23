@@ -8,7 +8,7 @@ const AssetsByClient = () => {
   const { id } = useParams()
 
   useEffect(() => {
-    const result = instance.get(`/ativos/clientes/${id}`, {
+    instance.get(`/ativos/clientes/${id}`, {
       headers: {
         Authorization: JWTToken,
       }
@@ -22,9 +22,7 @@ const AssetsByClient = () => {
       .finally(() => {
         setIsFetching(false);
       })
-
-    console.log(result);
-  }, {});
+  });
 
   return (
   <>
