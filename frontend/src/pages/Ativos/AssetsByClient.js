@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/';
 import instance from '../../shared/axios.config.js'
-const JWTToken  = "eyJhbGciOiJIUzI1NiJ9.YWRyaWFub0BnbWFpbC5jb20.kQNlR54aUIvCn7n2CrL7Q0q6sdLXRgJ-_sPSgLhikRU";
+import JWTToken from '../../utils/JWTToken.js';
 const AssetsByClient = () => {
   const [data, setData] = useState([]);
-  const [ isFetching, setIsFetching] = useState(false);
+  const [ isFetching, setIsFetching] = useState(true);
   const { id } = useParams()
 
   useEffect(() => {
@@ -29,16 +29,15 @@ const AssetsByClient = () => {
   return (
   <>
     { isFetching && <p>Carregando...</p>}
-    { data.map((inv) => (
+    { data && data.map((inv) => (
         <div key={ inv.assetId }>
-          <ul>
-            <li>
+            <div>
               <p>{ `Codigo do Cliente: ${ inv.clientId }` }</p>
               <p>{ `Codigo do Ativo: ${ inv.assetId }` }</p>
               <p>{ `Quantidade: ${ inv.quantityAsset }` }</p>
               <p>{ `Valor: R$ ${ inv.price }` }</p>
-            </li>
-          </ul>
+            </div>
+        <br />
         </div>
       )
     )}
