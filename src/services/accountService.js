@@ -3,6 +3,7 @@ const { notFoundClient } = require('../utils/errorMessage');
 
 const createdDeposit = async (client) => {
   const cliente = await User.findOne({ where: { id: client.userId } });
+
   if (!cliente) {
     throw notFoundClient;
   }
@@ -12,7 +13,7 @@ const createdDeposit = async (client) => {
   await User.update({ amount: newAmount },
     { where: { id: client.userId } });
 
-  return { id: client.userId, amount: newAmount };
+  return client;
 };
 
 const createdDraft = async (client) => {
@@ -25,7 +26,7 @@ const createdDraft = async (client) => {
   await User.update({ amount: newAmount },
     { where: { id: client.userId } });
 
-  return { id: client.userId, amount: newAmount };
+  return client;
 };
 
 const getClientById = async (id) => {
