@@ -1,13 +1,13 @@
 const Investment = (sequelize, DataTypes) => {
-  const Investment = sequelize.define("Investment", {
+  const Investment = sequelize.define('Investment', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     userId: {
       type: DataTypes.INTEGER,
-      foreignkey: true
+      foreignkey: true,
     },
     quantityAsset: {
       type: DataTypes.INTEGER,
@@ -16,13 +16,13 @@ const Investment = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL,
     },
     published: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     updated: {
-      type: DataTypes.STRING
-    }
+      type: DataTypes.STRING,
+    },
   }, {
-    timestamps: false
+    timestamps: false,
   });
 
   Investment.associate = (models) => {
@@ -31,6 +31,6 @@ const Investment = (sequelize, DataTypes) => {
   };
 
   return Investment;
-}
+};
 
 module.exports = Investment;

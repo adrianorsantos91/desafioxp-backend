@@ -1,9 +1,9 @@
 const Asset = (sequelize, DataTypes) => {
-  const Asset = sequelize.define("Asset", {
+  const Asset = sequelize.define('Asset', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     quantityAsset: {
       type: DataTypes.INTEGER,
@@ -12,10 +12,10 @@ const Asset = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
     },
   }, {
-    timestamps: false
+    timestamps: false,
   });
 
   return Asset;
-}
+};
 
 module.exports = Asset;

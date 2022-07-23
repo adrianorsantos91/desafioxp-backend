@@ -1,4 +1,4 @@
 module.exports = {
-		userId: 2,
-		amount: 100
+  userId: 2,
+  amount: 100
 };

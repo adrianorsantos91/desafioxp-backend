@@ -1,20 +1,20 @@
 const PurchaseAsset = (sequelize, DataTypes) => {
-  const PurchaseAsset = sequelize.define("PurchaseAsset", {
+  const PurchaseAsset = sequelize.define('PurchaseAsset', {
     purchaseId: {
       type: DataTypes.INTEGER,
       primarykey: true,
-      foreignkey: true
+      foreignkey: true,
     },
-    assetId:{
+    assetId: {
       type: DataTypes.INTERGER,
       primarykey: true,
-      foreignkey: true
-    }
+      foreignkey: true,
+    },
   }, {
-    timestamps: false
+    timestamps: false,
   });
 
-  PurchaseAsset.associate =(models) => {
+  PurchaseAsset.associate = (models) => {
     models.Asset.belongsToMany(models.Purchase,
       {
         through: PurchaseAsset,
@@ -30,10 +30,9 @@ const PurchaseAsset = (sequelize, DataTypes) => {
           otherKey: 'assetId',
           as: 'assets',
         });
-
   };
 
   return PurchaseAsset;
-}
+};
 
 module.exports = PurchaseAsset;

@@ -1,14 +1,14 @@
 const InvestmentAsset = (sequelize, DataTypes) => {
-  const InvestmentAsset = sequelize.define("InvestmentAsset", {
+  const InvestmentAsset = sequelize.define('InvestmentAsset', {
     investmentId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      foreignkey: true
+      foreignkey: true,
     },
     assetId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      foreignkey: true
+      foreignkey: true,
     },
   });
 
@@ -31,6 +31,6 @@ const InvestmentAsset = (sequelize, DataTypes) => {
   };
 
   return InvestmentAsset;
-}
+};
 
 module.exports = InvestmentAsset;

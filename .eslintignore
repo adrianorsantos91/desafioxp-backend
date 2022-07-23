@@ -2,3 +2,8 @@ node_modules
 test
 coverage
 .nyc*
+frontend/
+/tests
+**/migrations/
+**/models/
+**/seeders/

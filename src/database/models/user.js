@@ -1,9 +1,9 @@
 const User = (sequelize, DataTypes) => {
-  const User = sequelize.define("User", {
+  const User = sequelize.define('User', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     displayName: DataTypes.STRING,
     email: DataTypes.STRING,
@@ -12,7 +12,7 @@ const User = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL,
     },
   }, {
-    timestamps: false
+    timestamps: false,
   });
 
   // User.associate = (models) => {
@@ -21,6 +21,6 @@ const User = (sequelize, DataTypes) => {
   // };
 
   return User;
-}
+};
 
 module.exports = User;
