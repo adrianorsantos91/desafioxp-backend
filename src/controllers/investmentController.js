@@ -9,9 +9,6 @@ const createdPurchase = async (req, res) => {
 
 const createdSale = async (req, res) => {
   const sale = await investmentService.createdSale(req.body);
-  if (sale === 'quantity') {
-    return res.status(400).json({ message: '"quantityAsset" unavailable in wallet' });
-  }
   return res.status(201).json(sale);
 };
 
