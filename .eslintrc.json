@@ -9,5 +9,6 @@
         "sourceType": "module"
     },
     "rules": {
+      "sonarjs/no-duplicate-string": ["error", 5]
     }
 }
