@@ -1,14 +1,17 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import Assets from '../pages/Ativos'
+import NotFound from '../pages/NotFound';
 
-const Routes = () => {
+const Routes = () => (
   <Switch>
-    <Route exact path="/login"/>
-    <Route exact path="/ativos/clientes/:id"/>
-    <Route exact path="/ativos/:id"/>
-    <Route exact path="/conta/:id"/>
-    <Route exact path="/extra" />
+    <Route path="/ativos/:id" component={ Assets } />
+    <Route path="/login"/>
+    <Route path="/ativos/clientes/:id"/>
+    <Route path="/conta/:id"/>
+    <Route path="/investimentos" />
+    <Route path="*" component={ NotFound } />
   </Switch>
-}
+)
 
 export default Routes;
