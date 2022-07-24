@@ -2,50 +2,61 @@
 
 Este projeto contempla o desenvolvimento de uma aplicação que se assemelha a um case real do dia a dia, um aplicativo de investimento em ações, com algumas funcionalidades de conta digital.
 
+</br>
+
 # Desenvolvimento
 
 <details>
 <summary><strong>Planejamento:</strong></summary></br>
 
-Inicialmente reservei os primeiros dois dias para estruturar as informaçoes que foram disponibilizadas para o desafio, em um formato que ficasse mais claro como deveria seguir na construção do desafio do decorrer dos próximos dias. 
+Inicialmente, os dois primeiros dias foram reservados para estruturação das informações que foram disponibilizadas para o desafio, em um formato que facilitasse e classificasse as informações, bem como a ordem que deveria seguir para a construção do desafio do decorrer dos próximos dias.
 
-Criei uma página no NOTION, e organizei todos os dados que foram passados na cartilha do desafio, separando em blocos que deveriam ser feitas de forma sequencial.
+Em seguida, foi criada uma página no NOTION, na qual foram organizados todos os dados que foram passados na cartilha do desafio, classificando em blocos que deveriam ser realizados de modo sequencial.
 
-Após essa organização, reservei um tempo para desenhar e estrutura a relação das tabelas, seguindo as orientações passadas no desafio, neste processo surgir várias interpretações de como deveria ser feita, mas enquanto desenhava a estrutura pode perceber com maior facilidade como realmente deveria ser a relação das tabelas.
+Após essa organização, foi dedicado um tempo para desenhar e estruturar a relação das tabelas, seguindo as orientações passadas no desafio, neste processo surgiram várias interpretações de como deveria ser realizado, mas enquanto desenhava a estrutura, foi possível perceber com maior facilidade como realmente deveria ser a relação das tabelas.
 
-Em sequência defini que usaria o ORM Sequelize para fazer o CRUD, por conta da praticidade de montar o banco com os dados iniciais e fazer o relacionamento entre as tabelas. Pensando que ele poderá facilitar numa possivel mudança de paradigmas de banco de dados relacional e da orientação a objetos.
+Em sequência foi chegada a conclusão que seria utilizado o ORM Sequelize para fazer o CRUD, devido a praticidade para montar o banco com os dados iniciais e fazer o relacionamento entre as tabelas. Pensando que ele poderá facilitar numa possível mudança de paradigmas de banco de dados relacional e da orientação a objetos.
 
-Ao finalizar a criação do banco de dados, apliquei a arquiterura MSC, na qual a camada de model esta sendo coberta pelo Sequelize, criei a camada de service responsável pelas regras de negócio, e a camada de controlle para as requisições. Após esta implementação que por sinal a etapa de compra e venda, foi um desafio em tanto por conta de algumas definiões que ficaram faltando na construção da aplicação e quebrou algumas vezes, até descobri qual era o problema.
+Ao finalizar a criação do banco de dados, foi aplicada a arquitetura MSC, na qual a camada de model esta sendo coberta pelo Sequelize, foi criada a camada de service responsável pelas regras de negócio, e a camada de controller para as requisições. Após essa implementação, foi chegada a etapa de compra e venda, revelando-se um desafio e tanto em função de algumas definições que ficaram faltando na construção da aplicação e quebrou algumas vezes, até a descoberta de qual era o problema de fato.
 
-Por fim, segui para construção do frontend para consumir a API que havia criado, já fazia alguns meses que não esta programando processo do frontend, mas veio a tona o que muitas pessoas já haviam comentado antes, de que com o tempo migrar entre as linguagens ficaria mais fácil com o tempo, aprendendo o conceito, lógica e a ler a documentação, facilitou bastante na hora de interpretar os erros que foram aparecendo no decorrer na construção da interface. E consegui aprender a utilizar uma nova biblioteca ˜AXIOS˜ para intergração do projeto REACT com qualquer servicos de API disponível.
+Por fim, o desafio seguiu para construção do frontend para consumir a API que havia sido criado, já fazia alguns meses sem utilizar a programação do processo do frontend, mas veio a tona o que muitas pessoas já haviam comentado antes, a respeito de que com o tempo migrar entre as linguagens ficaria mais fácil com o tempo, aprendendo o conceito, lógica e a ler a documentação, facilitou bastante no momento de interpretar os erros que foram aparecendo no decorrer na construção da interface. Deste modo, foi possível aprender a utilizar uma nova biblioteca "Axios" para integração do projeto REACT com qualquer serviços de API disponível.
 
-<br></br>
+</br>
 </details>
 
 <details>
 <summary><strong>Desafios e decisões:</strong></summary></br>
 
-1. Estrututarar o planejamento dos 10 dias de desafio:
+1. Estruturar o planejamento dos 10 dias de desafio:
 
-    - Como haveria outros projetos e demais tarefas extras desafio e Trybe, foi um pouco trabalhoso definir e alterar os compromissos para conciliar e entregar o projeto dentro dos 10 dias. Tentei buscar definir pequenas tarefas diárias divididas para os 10 dias, assim facilitando o processo de evolução.
+    - Como haveriam outros projetos e demais tarefas extras desafio e Trybe, foi um pouco trabalhoso definir e alterar os compromissos para conciliar e entregar o projeto no prazo de 10 dias. Tentei buscar definir pequenas tarefas diárias divididas para os 10 dias, assim facilitando o processo de evolução bem como o cuidado e dedicação para cada uma das atividades que deveriam ser exercidas.
 
 2. Definir a relação entre as tabelas a serem criadas:
 
-    - Inicialmente havia pensando em fazer uma estrutura na qual poderia criar um histórico de compra e venda, assim como é fornecido na corretora, mas como estava ficando muito complexo e pelo tempo que havia planejado não conseguiria entregar as solicitações minimas, então resolvi focar na entrega principal e vou colocar essa ideia como uma implementação deste projeto.
+    - Inicialmente havia a possibilidade de fazer uma estrutura na qual poderia criar um histórico de compra e venda, assim como é fornecido na corretora, contudo, como estava ficando muito complexo e pelo tempo que havia planejado, poderia comprometer a entrega das solicitações mínimas, então a melhor resolução seria focar na entrega principal e destacar essa ideia como uma implementação deste projeto.
 
-    - Durante o processo de criar uma rota para filtrar os ativos por cliente, tive um problema constante e que me fez mudar a lógica algumas vezes, e fazer inúmeras pesquisas em forúns, assistir video aulas, revisar conteúdos fornecidos pela Trybe. Esse erro resultava na duplicação da primeira coluna da tabela, não permitindo fazer a relação correta entre as tabelas, inicialmente até questionei se a relacão estava correta, mas somente depois percebi que na tabela intermediária faltou especificar as foreignkey como primaryKey.
+    - Durante o processo de criar uma rota para filtrar os ativos por cliente, houve um problema constante o qual contribuiu para a mudança de lógica algumas vezes e realização de inúmeras pesquisas em fóruns, video aulas e revisão de conteúdos fornecidos pela Trybe. Esse erro resultava na duplicação da primeira coluna da tabela, não permitindo fazer a relação correta entre as tabelas, inicialmente até surgiu o questionamento se a relação estava correta, mas somente depois foi dada a conclusão de que na tabela intermediária faltou especificar as foreignkey como primaryKey.
 
 3. Durante a construção da Lógica de compra e venda:
 
-    - Por conta do problema com o relacionamento das tabelas, o desenvolvimento da funcão de compra/venda estava constantemente falhando com a duplicidade de valores na inserção do banco. Neste processo, criei algumas lógicas que não resolveram, após isso optei por me afastar um pouco do problema, pensar com mais calma, e dividir a implementação em blocos.
+    - Devido ao problema com o relacionamento das tabelas, o desenvolvimento da funcão de compra/venda estava constantemente falhando com a duplicidade de valores na inserção do banco. Neste processo, foram criadas algumas lógicas que não resolveram, após isso surgiu a ideia afastamento momentâneo do problema, para uma melhor avaliação. Assim, foi possível revisar as questões dificultosas com mais cautela, reavaliar alguns aspectos e dividir a implementação em blocos.
     
-
+</br>
 </details>
 
 <details>
 <summary><strong>Pontos para implementação:</strong></summary></br>
 
+- [ ] 1. Aplicar a estrutura e estilização UI no Frontend;
+- [ ] 2. Aplicar os testes no Frontend;
+- [ ] 3. Integrar a autenticação no Frontend e Backend;
+- [ ] 4. Criar a documentação da API utilizando o `Swagger`;
+- [ ] 5. Refatorar os códigos;
+- [ ] 6. Alterar linguagem para Typescript e/ou C#;
+
+</br>
 </details>
+</br>
 
 # Features
 
@@ -59,11 +70,12 @@ Por fim, segui para construção do frontend para consumir a API que havia criad
 - Integração do Docker e do docker-compose;
 - Autenticação JWT;
 - Integração Backend e Frontend, consumindo API com AXIOS;
-- Reactjs
-- Testes unitários
+- Reactjs;
+- Testes unitários;
 
+</br>
 </details>
-
+</br>
 
 # Orientações
 
@@ -76,7 +88,7 @@ Por fim, segui para construção do frontend para consumir a API que havia criad
 -  Esse serviço irá inicializar um container chamado `investiments_api`
 - A partir daqui você pode rodar o container `investments_api` via CLI ou abri-lo no Vs Code.
 
-> Use o comando `docker exe -it investments_api  bash`.
+> Utilize o comando `docker exe -it investments_api  bash`.
 - Ele te dará acesso ao terminal interativo do container criado pelo compose, que está rodando em segundo plano.
 
 > Instale as depedências [**caso existam] com `npm install`
@@ -92,6 +104,7 @@ Por fim, segui para construção do frontend para consumir a API que havia criad
 > Instale as dependências [**Caso existam**] com `npm install`
 - Para rodar este método você precisa estar com o `node` instalado em seu computador
 
+</br>
 </details>
 
 <details>
@@ -145,8 +158,7 @@ Por fim, segui para construção do frontend para consumir a API que havia criad
 - Adicione uma declaração para o _Pull Request_ e clique no botão verde _"Create pull request"_;
 - Volte até a página de _Pull Request_ do repositório e confira que o seu _Pull Request_ está criado.
 
-<br><br>
-
+</br>
 </details>
 
 <details>
@@ -171,6 +183,7 @@ Por fim, segui para construção do frontend para consumir a API que havia criad
   #### Variável `JWT_SECRET`:
 
   Esta variável de ambiente deverá ser utilizada tanto para criar o token quanto para verificá-lo.
+  </br>
 </details>
 
 <details>
@@ -253,6 +266,7 @@ Neste projeto foi utilizado o `ORM Sequelize` para criar e atualizar o banco de 
 
 ---
 
+</br>
 </details>
 
 <details>
@@ -268,17 +282,20 @@ Neste projeto foi utilizado o `ORM Sequelize` para criar e atualizar o banco de 
 > Backend: se certifique que as portas 3000 e 3306 não estejam em uso, para rodar o projeto, caso esteja:
 
 - Verifique se você tem algum container rodando na porta:
-    - use este comando para listar as imagens: `docker ps`
+    - Utilize esse comando para listar as imagens: `docker ps`
     - Parando o container: `docker stop "ID_CONTAINER"`
     - Você pode limpar as imagens em cache:
-        - utilize este comando: `docker images prune -a`
+        - Utilize este comando: `docker images prune -a`
+
+- Para rodar os testes no backend:
+    - Utilize o seguinte comando: `npm run test:mocha`
 
 ### Frontend:
 
 - Agora em um segundo terminal, acesse a pasta frontend:
-    - use o seguinte comando: `cd frontend`
+    - Utilize o seguinte comando: `cd frontend`
 - Após acessar, inicie a aplicação de frontend:
-    - use o seguinte comando: `npm start`
+    - Utilize o seguinte comando: `npm start`
 
 ### Testando a aplicação:
 
@@ -290,8 +307,23 @@ Neste projeto foi utilizado o `ORM Sequelize` para criar e atualizar o banco de 
     - Efetuar uma compra de ativo: `/investimentos/comprar`
     - Efetuar uma venda de ativo: `/investimentos/vender`
 
+</br>
 </details>
 
 <details>
-<summary><strong>Links</strong></summary>
-<details>
+<summary><strong>Links</strong></summary></br>
+
+ - Referências: </br>
+
+    - [sequelize](https://sequelize.org/docs/v6/core-concepts/model-querying-basics/)
+    - [stackoverflow](https://stackoverflow.com/questions/29233896/sequelize-table-without-column-id)
+    - [npm cors](https://www.npmjs.com/package/cors)
+    - [eslintrc](https://github.com/diego3g/node-microservices-ddd/blob/master/packages/server/.eslintrc.json )
+    - [axios](https://github.com/axios/axios)
+    - [supertest](https://github.com/visionmedia/supertest)
+    - [mocha-and-chai](https://www.digitalocean.com/community/tutorials/test-a-node-restful-api-with-mocha-and-chai)
+    - [npm nyc](https://www.npmjs.com/package/nyc)
+    - [redux-thunk](https://www.npmjs.com/package/redux-thunk)
+    - [redux-toolkit](https://redux-toolkit.js.org/introduction/getting-started)
+</br>
+</details>
