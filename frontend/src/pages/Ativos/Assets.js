@@ -27,8 +27,7 @@ const Assets = () => {
   return (
   <>
     { isFetching && <p>{ 'Carregando...' }</p>}
-    { data.id &&
-      <div>
+    { !data.id ? 'Ativo não encontrado' : <div>
         <p>{ `Codigo do Ativo: ${ data.id }` }</p>
         <p>{ `Quantidade disponivel: ${ data.quantityAsset }` }</p>
         <p>{ `Valor: R$ ${ data.price }` }</p>

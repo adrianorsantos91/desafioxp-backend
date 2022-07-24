@@ -6,7 +6,7 @@ const AssetsByClient = () => {
   const [data, setData] = useState([]);
   const [ isFetching, setIsFetching] = useState(true);
   const { id } = useParams()
-
+  console.log('data: %s', data);
   useEffect(() => {
     instance.get(`/ativos/clientes/${id}`, {
       headers: {
@@ -27,7 +27,7 @@ const AssetsByClient = () => {
   return (
   <>
     { isFetching && <p>Carregando...</p>}
-    { data && data.map((inv) => (
+    { !data ? "Cliente não encontrado" : data.map((inv) => (
         <div key={ inv.assetId }>
             <div>
               <p>{ `Codigo do Cliente: ${ inv.clientId }` }</p>
